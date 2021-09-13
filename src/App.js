@@ -1,18 +1,17 @@
 import GlobalStyle from "./Styles/global";
+import { useState } from "react";
 import { Coin } from "./Components/Coin";
 import { useCoins } from "./Providers/Coins";
+import { Search } from "./Components/Search";
+
 function App() {
-  const { coins, updateCoins } = useCoins();
+  const { updateCoins, filteredCoins } = useCoins();
+
   return (
     <div className="App">
       <GlobalStyle />
-      <div className="coin-search">
-        <h1 className="coin-text">Search a Currency</h1>
-        <form>
-          <input type="text" placeholder="Search" className="coin-input" />
-        </form>
-      </div>
-      {coins.map((coin) => {
+      <Search />
+      {filteredCoins.map((coin) => {
         return <Coin coin={coin} />;
       })}
     </div>

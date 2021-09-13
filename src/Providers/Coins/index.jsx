@@ -5,6 +5,7 @@ export const CoinsContext = createContext();
 
 export const CoinsProvider = ({ children }) => {
   const [coins, setCoins] = useState([]);
+  const [search, setSearch] = useState("");
   useEffect(() => {
     axios
       .get(
@@ -23,8 +24,14 @@ export const CoinsProvider = ({ children }) => {
       .catch((error) => console.log(error));
   };
 
+  const filteredCoins = coins.filter((coin) => {
+    return coin.name.toLowerCase().includes(search.toLowerCase());
+  });
+
   return (
-    <CoinsContext.Provider value={{ coins, setCoins, updateCoins }}>
+    <CoinsContext.Provider
+      value={{ coins, setCoins, updateCoins, filteredCoins, search, setSearch }}
+    >
       {children}
     </CoinsContext.Provider>
   );
