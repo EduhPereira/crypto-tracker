@@ -6,7 +6,7 @@ export const Coin = ({ coin }) => {
     <Card key={coin.id}>
       <h3>{coin.name}</h3>
       <span>{coin.symbol}</span>
-      <div>Current Price:{coin.current_price}</div>
+      <div>Current Price: R${coin.current_price}</div>
     </Card>
   );
 };

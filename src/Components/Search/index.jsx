@@ -1,5 +1,7 @@
 import React from "react";
 import { useCoins } from "../../Providers/Coins";
+import crypto from "../../Assets/crypto.gif";
+import { SearchContainer, Header } from "./styles";
 
 export const Search = () => {
   const { setSearch } = useCoins();
@@ -9,16 +11,18 @@ export const Search = () => {
   };
 
   return (
-    <div className="coin-search">
-      <h1 className="coin-text">Search a Currency</h1>
+    <SearchContainer>
+      <Header>crypto tracker</Header>
+      <img src={crypto} alt="" />
+      <h1>Search a Currency</h1>
       <form>
         <input
           type="text"
-          placeholder="Search"
+          placeholder="Bitcoin, Etherum..."
           className="coin-input"
           onChange={handleChange}
         />
       </form>
-    </div>
+    </SearchContainer>
   );
 };
