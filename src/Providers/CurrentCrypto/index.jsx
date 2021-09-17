@@ -1,21 +1,20 @@
-import { createContext, useContext, useEffect, useState } from "react";
-import axios from "axios";
+import { createContext, useContext, useState } from "react";
 
 export const CurrentCryptoContext = createContext();
 
 export const CurrentCryptoProvider = ({ children }) => {
-  const [cryptoID, setCryptoID] = useState("");
-  const [actualCrypto, setActualCrypto] = useState();
-
-  useEffect(() => {
-    axios
-      .get(`https://api.coingecko.com/api/v3/coins/${cryptoID}`)
-      .then((response) => setActualCrypto(response.data))
-      .catch((error) => console.log(error));
-  }, []);
+  const [isVisible, setIsVisible] = useState(false);
+  const [cryptoID, setCryptoID] = useState("bitcoin");
 
   return (
-    <CurrentCryptoContext.Provider value={{ setCryptoID, actualCrypto }}>
+    <CurrentCryptoContext.Provider
+      value={{
+        isVisible,
+        setIsVisible,
+        cryptoID,
+        setCryptoID,
+      }}
+    >
       {children}
     </CurrentCryptoContext.Provider>
   );
